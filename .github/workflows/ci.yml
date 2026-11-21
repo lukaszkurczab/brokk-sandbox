@@ -1,0 +1,14 @@
+name: CI
+on:
+  push:
+    branches: [main, 'brokk/**']
+jobs:
+  verify:
+    name: verify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Sprawdzenie
+        run: |
+          test -f README.md
+          if [ -f FAIL ]; then echo "Plik FAIL istnieje: to sprawdzenie ma nie przejść."; exit 1; fi
